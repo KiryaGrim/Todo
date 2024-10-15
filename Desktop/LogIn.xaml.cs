@@ -27,7 +27,9 @@ namespace Desktop
 
         public void LogInButton_Click(object sender, RoutedEventArgs e)
         {
-            //        
+            MainEmpty mainEmpty = new MainEmpty();
+            mainEmpty.Show();
+            this.Hide();
         }
 
         public void RegistrationButton_Click (object sender, RoutedEventArgs e)
