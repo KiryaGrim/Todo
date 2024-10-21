@@ -9,6 +9,7 @@ namespace Desktop
     /// </summary>
     public partial class App : Application
     {
+        //Created by Kirill Bebishev
     }
 
 }
