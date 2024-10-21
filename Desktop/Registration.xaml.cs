@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -22,6 +23,53 @@ namespace Desktop
         public Registration()
         {
             InitializeComponent();
+        }
+
+        public void RegistrationButton_Click (object sender, RoutedEventArgs e)
+        {
+            if (UserName.Text.Length < 3)
+            {
+                MessageBox.Show("Имя пользователя должно содержать не менее трех символов");
+            }
+
+            else if (!CheckEmail())
+            {
+                MessageBox.Show("Почта некорректна");
+            }
+
+            else if (Password.Password != PasswordConfirm.Password)
+            {
+                MessageBox.Show("Пароль и его подтверждение должны совпадать");
+            }
+
+            else if (Password.Password.Length < 6)
+            {
+                MessageBox.Show("Пароль должен состоять не менее чем из шести символов");
+            }
+            else
+            {
+                MainEmpty mainEmpty = new MainEmpty();
+                mainEmpty.Show();
+                this.Close();
+            }
+        }
+
+        private bool CheckEmail()
+        {
+            if (Mail.Text == "exam@yandex.ru")
+            {
+                return false;
+            }
+
+            return Regex.IsMatch(Mail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$");
+        }
+
+        private void Input_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Space)
+            {
+                e.Handled = true;
+            }
         }
 
         public void BackButton_Click (object sender, RoutedEventArgs e)

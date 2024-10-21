@@ -32,6 +32,21 @@ namespace Desktop
             this.Hide();
         }
 
+        public void LogInButton_Click (Object sender, RoutedEventArgs e)
+        {
+            MainEmpty mainEmpty = new MainEmpty();
+            mainEmpty.Show();
+            this.Hide();
+        }
+
+        private void Input_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Space)
+            {
+                e.Handled = true;
+            }
+        }
+
         public void Mail_GotFocus (object sender, RoutedEventArgs e)
         {
             if (Mail.Text == "Введите почту")

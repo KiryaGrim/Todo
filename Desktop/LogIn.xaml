@@ -34,7 +34,7 @@
                 </Grid>
                 <Grid Grid.Row="2">
                     <TextBox Name="Mail" Text="Введите почту" Width="326" Height="19" FontFamily="Actor" FontSize="16" HorizontalAlignment="Left"
-                         VerticalAlignment="Top" Margin="0,3,0,0" Foreground="#C6C6C6" BorderThickness="0" GotFocus="Mail_GotFocus" LostFocus="Mail_LostFocus"/>
+                         VerticalAlignment="Top" Margin="0,3,0,0" Foreground="#C6C6C6" BorderThickness="0" GotFocus="Mail_GotFocus" LostFocus="Mail_LostFocus" PreviewKeyDown="Input_PreviewKeyDown"/>
                     <Line X1="0" Y1="0" X2="326" Y2="0" Stroke="#EDEDED" StrokeThickness="3" HorizontalAlignment="Left" Margin="1,34,0,0"/>
                 </Grid>
                 <Grid Grid.Row="3">
@@ -45,7 +45,7 @@
                 VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,0,0,23" IsHitTestVisible="False" Visibility="Visible" Panel.ZIndex="1"/>
                     <PasswordBox Name="Password" Width="326" Height="19" FontFamily="Actor" FontSize="16" HorizontalAlignment="Left"
                 VerticalAlignment="Top" Margin="0,3,0,0" Foreground="#313131" BorderThickness="0" GotFocus="Password_GotFocus"
-                LostFocus="Password_LostFocus" PasswordChanged="Password_PasswordChanged" Panel.ZIndex="0"/>
+                LostFocus="Password_LostFocus" PasswordChanged="Password_PasswordChanged" PreviewKeyDown="Input_PreviewKeyDown" Panel.ZIndex="0"/>
 
                     <Line X1="0" Y1="0" X2="326" Y2="0" Stroke="#EDEDED" StrokeThickness="3" HorizontalAlignment="Left" Margin="1,34,0,0"/>
                 </Grid>
@@ -54,7 +54,7 @@
                            HorizontalAlignment="Left" Margin="152,0,0,0" Foreground="#313131"/>
                 </Grid>
                 <Grid Grid.Row="6">
-                    <Button Name="LogInButton" Width="326" Height="48" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,5" FontSize="18" FontFamily="Actor" Background="#F96060">
+                    <Button Name="LogInButton" Width="326" Height="48" VerticalAlignment="Bottom" HorizontalAlignment="Left" Margin="0,0,0,5" FontSize="18" FontFamily="Actor" Background="#F96060" Click="LogInButton_Click">
                         <Button.Template>
                             <ControlTemplate TargetType="Button">
                                 <Border Background="{TemplateBinding Background}" 
