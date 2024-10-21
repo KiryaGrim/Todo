@@ -1,3 +1,4 @@
+using Desktop.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,9 +35,27 @@ namespace Desktop
 
         public void LogInButton_Click (Object sender, RoutedEventArgs e)
         {
-            MainEmpty mainEmpty = new MainEmpty();
-            mainEmpty.Show();
-            this.Hide();
+            if (Mail.Text == "" ||  Password.Password == "")
+            {
+                MessageBox.Show("Введите почту и пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            var user = UserRepository.AuthenticateUser(Mail.Text, Password.Password);
+
+            if (user != null)
+            {
+                MainEmpty mainEmpty = new MainEmpty();
+                mainEmpty.Show();
+                this.Hide();
+
+                MessageBox.Show($"Добро пожаловать, {user.Username}!");
+            }
+            else
+            {
+                MessageBox.Show("Неверная почта или пароль", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+
         }
 
         private void Input_PreviewKeyDown(object sender, System.Windows.Input.KeyEventArgs e)

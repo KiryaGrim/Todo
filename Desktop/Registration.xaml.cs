@@ -1,3 +1,4 @@
+using Desktop.Repository;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,32 +26,43 @@ namespace Desktop
             InitializeComponent();
         }
 
-        public void RegistrationButton_Click (object sender, RoutedEventArgs e)
+        public void RegistrationButton_Click(object sender, RoutedEventArgs e)
         {
-            if (UserName.Text.Length < 3)
+            if (UserName.Text == "Введите имя пользователя" || UserName.Text.Length < 3)
             {
-                MessageBox.Show("Имя пользователя должно содержать не менее трех символов");
+                MessageBox.Show("Имя пользователя должно содержать не менее трех символов", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             else if (!CheckEmail())
             {
-                MessageBox.Show("Почта некорректна");
+                MessageBox.Show("Почта некорректна", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             else if (Password.Password != PasswordConfirm.Password)
             {
-                MessageBox.Show("Пароль и его подтверждение должны совпадать");
+                MessageBox.Show("Пароль и его подтверждение должны совпадать", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
 
             else if (Password.Password.Length < 6)
             {
-                MessageBox.Show("Пароль должен состоять не менее чем из шести символов");
+                MessageBox.Show("Пароль должен состоять не менее чем из шести символов", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
             }
             else
             {
-                MainEmpty mainEmpty = new MainEmpty();
-                mainEmpty.Show();
-                this.Close();
+                bool isRegistered = UserRepository.RegisterUser(UserName.Text, Mail.Text, Password.Password);
+
+                if (isRegistered)
+                {
+                    MainEmpty mainEmpty = new MainEmpty();
+                    mainEmpty.Show();
+                    this.Hide();
+
+                    MessageBox.Show("Регистрация прошла успешно");
+                }
+                else
+                {
+                    MessageBox.Show("Пользователь с таким именем пользователя или email уже существует", "Ошибка", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
             }
         }
 
